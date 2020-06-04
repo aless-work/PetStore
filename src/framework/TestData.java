@@ -6,8 +6,30 @@ import java.io.IOException;
 
 public class TestData {
 
-    public static String getProperty(String key) {
+   public static String getProperty(String key) {
         return getValue ("testdata/properties.json", key);
+    }
+
+   public static long getLong (String json, String key) {
+       long result = 0;
+
+       try {
+           String path = "$." + key;
+           result = JsonPath.read(json, path);
+       } catch (Exception e) {TestSetup.lastException = e;}
+
+       return result;
+   }
+
+    public static String getString (String json, String key) {
+        String result = "";
+
+        try {
+            String path = "$." + key;
+            result = JsonPath.read(json, path);
+        } catch (Exception e) {TestSetup.lastException = e;}
+
+        return result;
     }
 
    private static String getValue (String fName, String key) {

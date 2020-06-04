@@ -25,14 +25,12 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         TestSetup.methodInfo.log(Status.FAIL, "Test Case \"" + getTestName(result) + "\"" + " is failed");
         TestSetup.methodInfo.log(Status.FAIL, "Test failure : " + result.getThrowable().getMessage());
-        TestSetup.methodInfo.log(Status.FAIL, "Test failure : " + TestSetup.lastException.getMessage());
-//        String screenshotPath = TestSetup.getScreenshot(TestSetup.webDriver, result.getName());
-//        TestSetup.methodInfo.log(Status.FAIL, "<a href='" + screenshotPath + "'>" + "<img src='" + screenshotPath + "' width='75%'></a>");
-//        try {
-//            TestSetup.methodInfo.addScreenCaptureFromPath(screenshotPath);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
+        if (TestSetup.lastException != null) {
+            TestSetup.methodInfo.log(Status.FAIL, "Test failure : " + TestSetup.lastException.getMessage());
+            TestSetup.lastException = null;
+        }
+
     }
 
     @Override
@@ -43,7 +41,6 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-        //_logger.info("onTestFailedButWithinSuccessPercentage");
     }
 
     @Override

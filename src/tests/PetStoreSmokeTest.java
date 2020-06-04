@@ -1,11 +1,7 @@
 package tests;
 
-import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.given;
-import static org.testng.Assert.*;
-
-import com.jayway.jsonpath.JsonPath;
 import framework.TestData;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 import framework.TestSetup;
@@ -17,11 +13,12 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.Date;
-import java.util.List;
 
 public class PetStoreSmokeTest extends TestSetup {
     private Date timeStamp;
     private String pet_name;
+    private long pet_id;
+    private String pet_json;
 
     @BeforeClass
     public void beforeClass() {  }
@@ -36,132 +33,68 @@ public class PetStoreSmokeTest extends TestSetup {
 
     @Test(alwaysRun = true, description = "Verify if the Test can be run in this environment.")
     public void ifTestCanBeRun() {
-        // this test class limited for execution in devtest2 environment only. Remove it when you are ready.
-        String _id = TestData.getPet("id", pet_name);
-        if (Integer.valueOf(_id) <= 0)
+        // verify if correct test data provided by the test suite.
+        if (TestData.getPet("photoUrl", pet_name).isEmpty())
             throw new SkipException("The test class is skipped because Pet test data is not available.");
     }
 
     @Test(dependsOnMethods = {"ifTestCanBeRun"}, description = "Verify if new Pet can be added.")
     public void ifPetCanBeAdded() {
-        Assert.assertTrue(true);
+        String ep_postNewPet = "/pet";
+        String ep_body = "{\"name\":\"" + pet_name + "\",\"photoUrls\":[\"" + TestData.getPet("photoUrl", pet_name) + "\"]}";
+        Response response;
+
+        response = RestAssured
+                .given()
+                    .baseUri(applicationURL).header("Content-Type", "application/json").body(ep_body)
+                .post(ep_postNewPet);
+
+        Assert.assertEquals(response.statusCode(), 200,"Pet \\\"\" + pet_name + \"\\\" is not added. HTTP error: ");
+        pet_id = TestData.getLong(response.getBody().print(), "id");
     }
 
     @Test(dependsOnMethods = {"ifPetCanBeAdded"}, description = "Verify if new Pet can be found by id.")
     public void ifPetCanBeFoundById() {
+        String ep_getPetById = "/pet/{petId}";
+        Response response;
 
+        response = RestAssured
+                .given()
+                    .baseUri(applicationURL).pathParam("petId", pet_id)
+                .get(ep_getPetById);
+        Assert.assertEquals(response.statusCode(), 200,"Pet \"" + pet_name + "\" is not found by id " + pet_id + ". HTTP error: ");
+        pet_json = response.getBody().print();
     }
 
-    @Test(dependsOnMethods = {"ifPetCanBeAdded"}, description = "Verify if new Pet can be found by status.")
-    public void ifPetCanBeFoundByStatus() {
+    @Test(dependsOnMethods = {"ifPetCanBeFoundById"}, description = "Verify if existing Pet can be modified.")
+    public void ifPetCanBeModified() {
+        String ep_putPetById = "/pet";
+        String oldStatus = TestData.getString(pet_json, "status");
+        String ep_body; // = "{\"id\":" + pet_id + ",\"status\":\"available\"}";
+        Response response;
 
+        if (oldStatus.isEmpty())
+            ep_body = pet_json.substring (0,pet_json.length()-1) + ",\"status\":\"available\"}";
+        else
+            ep_body = pet_json.replaceFirst("\"status\":[.]*\"" + oldStatus + "\"", "\"status\":\"available\"}");
+
+        response = RestAssured
+                .given()
+                    .baseUri(applicationURL).header("Content-Type", "application/json").body(ep_body)
+                .put(ep_putPetById);
+        Assert.assertEquals(response.statusCode(), 200,"Pet \"" + pet_name + "\" is not updated. HTTP error: ");
     }
 
-    @Test(dependsOnMethods = {"ifPetCanBeAdded"}, description = "Verify if new Pet can be updated.")
-    public void ifPetCanBeUpdated() {
-
-    }
-
-    @Test(dependsOnMethods = {"ifPetCanBeAdded"}, description = "Verify if new Pet can be deleted.")
+    @Test(dependsOnMethods = {"ifPetCanBeModified"}, description = "Verify if existing Pet can be deleted.")
     public void ifPetCanBeDeleted() {
+        String ep_deletePetById = "/pet/{petId}";
+        Response response;
 
+        response = RestAssured
+                .given()
+                .baseUri(applicationURL).pathParam("petId", pet_id)
+                .delete(ep_deletePetById);
+        Assert.assertEquals(response.statusCode(), 200,"Pet \"" + pet_name + "\" is not deleted. HTTP error: ");
     }
 
-
-//    @Test(dependsOnMethods = {"ifSigninNewTenant"}, description = "Verify if the Tenant can be deleted using API call.")
-//    public void ifTenantCanBeDeleted() {
-//        Response response;
-//        String url_get_tenants = applicationURL + "users/api/Tenant";
-//        String url_post_delete = applicationURL + "security/api/accounts/delete";
-//
-//        // we need to get sysadmin cookies to continue working with API
-//        nextPage = signInNirmata(multiple_accounts_user, user_account, TestData.getUser("user_password", multiple_accounts_user));
-//        //    private WebPage nextPage;
-//        String cookie = nextPage.getHttpCookies();
-//
-//         // get tenants list
-//        response = given().header("Cookie", cookie).get(url_get_tenants);
-//        assertEquals(response.getStatusCode(), 200, "Getting of tenants list is failed.");
-//
-//        // locate aimed tenant
-//        String output = response.getBody().print();
-//        String json_pattern = "$.[?(@.ownerEmail=='" + new_tenant_user + "')]['id']";
-//        List<String> tenantMap = JsonPath.read(output, json_pattern);
-//        assertEquals(tenantMap.size(), 1, "Cannot retrieve unique tenant id for " + new_tenant_user + ". Test stopped.");
-//        String tenantId = tenantMap.get(0);
-//
-//        // delete the tenant
-//        String body = "{\"id\": \"" + tenantId + "\",\"forceDelete\": true}";
-//        response = given().header("Cookie", cookie).body(body).post(url_post_delete);
-//        assertEquals(response.getStatusCode(), 200, "Tenant has not been deleted, API call status code is - " + response.getStatusCode());
-//    }
-
-
-
-
-
-
-//    @Test(alwaysRun = true, description = "Get list of all tenants with IDs")
-//    @Parameters({"multiple_accounts_user"})
-//    public void test102(String multiple_accounts_user) {
-//        String uri = "https://devtest2.nirmata.io/users/api/Tenant";
-//        String email = "";
-//        String password = "";
-//        String api_key = "";
-//
-//        Response response = given().header("Authorization", api_key).get(uri);
-//        String output = response.getBody().print();
-//
-//        List<Map> result = JsonPath.read(output, "$[*]['id','ownerEmail','createdOn']");
-//
-//        int j = 0;
-//        for (int i=0; i < result.size(); i++) {
-//            if (result.get(i).get("ownerEmail").toString().contains("@mail.ru") &&
-//            new Date (Long.parseLong(result.get(i).get("createdOn").toString())).getTime() > new Date(new Date().getTime()-24*60*60*1000).getTime()) {
-//                deleteTenant(result.get(i).get("id").toString(), api_key);
-//            }
-//        }
-//
-////        JsonPath.read(output, "$.[?(@.ownerEmail=='and14eve20200303051913@mail.ru')]['id','ownerEmail']");
-
-//    }
-
-//    private void deleteTenant(String id, String api_key) {
-//        String uri = "https://devtest2.nirmata.io/security/api/accounts/delete";
-//        String email = "";
-//        String password = "";
-//        String cookie0 = "";
-//
-//        String body = "{\"id\": \"" + id + "\",\"forceDelete\": true}";
-//
-//        Response response = given().contentType("application/json").accept("application/json").header("Cookie", cookie0).body(body).post(uri);
-//
-//    }
-
-//    @Test
-//    @Parameters({"login_email", "login_account"})
-//    public void TestSignIn(String login_email, String login_account) {
-//        SignIn signIn = new SignIn(webDriver, applicationURL);
-//        nextPage = signIn.loginNirmataAccount(login_email, login_account);
-//        Assert.assertTrue(nextPage.isClass("MainAppSuper"),"SignIn failed");
-//    }
-//
-//    @Test (dependsOnMethods = {"TestSignIn"})
-//    public void AccessAppMainPage() {
-//        // check all version of starter page (before main application page)
-//        if (nextPage.isClass("GetStartedPage")) {
-//            ((GetStartedPage) nextPage).isLoaded();
-//            ((GetStartedPage) nextPage).skipSetup();
-//            nextPage = ((GetStartedPage) nextPage).nextWebPage();
-//        }
-////        else if () {}
-//        Assert.assertTrue(nextPage.isClass("MainApplicationPage"));
-//    }
-//
-//    @Test (dependsOnMethods = {"AccessAppMainPage"})
-//    @Parameters({"adduser_email"})
-//    public void AddUser(String adduser_email) {
-//        nextPage = ((MainMenuPage) nextPage).selectMenuItem("Identity & Access");
-//        Assert.assertTrue(nextPage.isClass("Users"));
-//    }
 }

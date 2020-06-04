@@ -12,13 +12,11 @@ import java.util.Date;
 public abstract class TestSetup {
     public static Date testStartTime = new Date();
     public static Exception lastException;
-    protected static String applicationURL;         // = TestData.getProperty("App_URL");
-    private static String reportDir;                // = TestData.getProperty("Report_Directory");
-//    protected SoftAssert softAssert = new SoftAssert();
+    protected static String applicationURL;
+    private static String reportDir;
 
     public static ExtentHtmlReporter htmlReporter;
     public static ExtentReports reports;
-//    public static ExtentTest suiteInfo;
     public static ExtentTest methodInfo;
     public static ExtentTest testInfo;
     public static String testName;
@@ -29,16 +27,13 @@ public abstract class TestSetup {
                               @Optional String Rep_Dir) {
 
         // initialize optional variables
-        applicationURL = TestData.getSuiteProperty("App_URL", App_URL, "https://petstore.swagger.io/");
+        applicationURL = TestData.getSuiteProperty("App_URL", App_URL, "");
         reportDir = TestData.getSuiteProperty("Report_Directory", Rep_Dir, "reports");
 
         // initialize report system
 
-//        String reportName = reportDir + "//" + new SimpleDateFormat("yyyyMMddhhmmss").format(testStartTime) + ".html";
-
-        String reportName = TestData.getSuiteProperty("BUILD_NUMBER", "",new SimpleDateFormat("yyyyMMddhhmmss").format(testStartTime));
+        String reportName = new SimpleDateFormat("yyyyMMddhhmmss").format(testStartTime);
         reportName = reportDir + "/" + reportName + ".html";
-
 
         htmlReporter = new ExtentHtmlReporter(reportName);
         htmlReporter.config().setDocumentTitle("Automation Report");
@@ -53,16 +48,11 @@ public abstract class TestSetup {
         reports.setSystemInfo("OS Architecture", System.getProperty("os.arch"));
         reports.setSystemInfo("Java Version", System.getProperty("java.runtime.version"));
         reports.setSystemInfo("Tester Name", "Automation Tester");
-
     }
 
     @AfterSuite
     public static void tearDown() {
         reports.flush();
     }
-
-//    @AfterMethod
-//    public void tearDown(ITestResult result) {
-//    }
 
 }

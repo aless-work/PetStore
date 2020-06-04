@@ -1,24 +1,12 @@
 [
   {
-    "id": "12673733",
-    "category": {
-      "id": "999001",
-      "name": "Automation dog"
-    },
     "name": "Tuck",
-    "photoUrls": ["https://toonclips.com/600/cartoon-school-dog-taking-a-test-by-toonaday-1551.jpg"],
-    "tags": ["smart"],
-    "status": "pending"
+    "photoUrl": "https://toonclips.com/600/cartoon-school-dog-taking-a-test-by-toonaday-1551.jpg",
+    "tag": "smart"
   },
   {
-    "id": "12673734",
-    "category": {
-      "id": "999001",
-      "name": "Automation dog"
-    },
     "name": "Nacho",
-    "photoUrls": ["https://telegramguides.com/wp-content/uploads/2018/07/stupid-dogs-telegram-pack-10.png"],
-    "tags": ["stupid"],
-    "status": "pending"
+    "photoUrl": "https://telegramguides.com/wp-content/uploads/2018/07/stupid-dogs-telegram-pack-10.png",
+    "tag": "stupid"
   }
 ]

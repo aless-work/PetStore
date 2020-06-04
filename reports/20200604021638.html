@@ -44,7 +44,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Jun 3, 2020 10:54:10 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Jun 4, 2020 02:16:38 AM</span>
 			</a>
 		</ul>
 	</div>
@@ -59,8 +59,7 @@
 				<i class='material-icons'>warning</i> Status
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
-										<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
-					<li status='skip'><a href='#!'>Skip <i class='material-icons cyan-text'>redo</i></a></li>
+										<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -113,10 +112,10 @@
 					<canvas id='parent-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> test(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>1</span> test(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='100%'>1</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
 				</div>
 			</div>
 		</div>
@@ -127,10 +126,10 @@
 					<canvas id='child-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> step(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>5</span> step(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='16.667%'>1</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='83.333%'>5</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
 				</div>
 			</div>
 		</div>
@@ -148,17 +147,17 @@
 </div>	<div class='subview-left left'>
 		<div class='view-summary'>
 			<ul id='test-collection' class='test-collection'>
-				<li class='test displayed active has-leaf fail' status='fail' bdd='false' test-id='1'>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='false' test-id='1'>
 					<div class='test-heading'>
 						<span class='test-name'>Pets smoke test</span>
-						<span class='test-time'>Jun 3, 2020 10:54:10 PM</span>
-						<span class='test-status right fail'>fail</span>
+						<span class='test-time'>Jun 4, 2020 02:16:38 AM</span>
+						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 3, 2020 10:54:10 PM</span>
-	<span class='label end-time'>Jun 3, 2020 10:55:06 PM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 56s+364ms</span>
+	<span class='label start-time'>Jun 4, 2020 02:16:38 AM</span>
+	<span class='label end-time'>Jun 4, 2020 02:16:41 AM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 3s+487ms</span>
 </div>
 <div class='test-attributes'>
 	<div class='category-list'>
@@ -166,12 +165,12 @@
 	</div>
 </div>
 <ul class='collapsible node-list' data-collapsible='accordion'>
-	<li class='node level-1 leaf fail' status='fail' test-id='2'>
+	<li class='node level-1 leaf pass' status='pass' test-id='2'>
 		<div class='collapsible-header'>
 			<div class='node-name'>Verify if the Test can be run in this environment.</div>
-			<span class='node-time'>Jun 3, 2020 10:54:10 PM</span>
-			&middot; <span class='node-duration'>0h 0m 56s+333ms</span>
-			<span class='test-status right fail'>fail</span>
+			<span class='node-time'>Jun 4, 2020 02:16:38 AM</span>
+			&middot; <span class='node-duration'>0h 0m 0s+13ms</span>
+			<span class='test-status right pass'>pass</span>
 		</div>
 		<div class='collapsible-body'>
 			<div class='node-steps'>
@@ -184,27 +183,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class='log' status='fail'>
-							<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-							<td class='timestamp'>10:55:06 PM</td>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>2:16:38 AM</td>
 							<td class='step-details'>
-									Test Case "Verify if the Test can be run in this environment." is failed
-								
-							</td>
-						</tr>
-						<tr class='log' status='fail'>
-							<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-							<td class='timestamp'>10:55:06 PM</td>
-							<td class='step-details'>
-									Test failure : For input string: ""
-								
-							</td>
-						</tr>
-						<tr class='log' status='fail'>
-							<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-							<td class='timestamp'>10:55:06 PM</td>
-							<td class='step-details'>
-									Test failure : No results for path: $['BUILD_NUMBER']
+									Test Case : Verify if the Test can be run in this environment. is passed
 								
 							</td>
 						</tr>
@@ -213,12 +196,12 @@
 			</div>
 		</div>
 	</li>
-	<li class='node level-1 leaf skip' status='skip' test-id='3'>
+	<li class='node level-1 leaf pass' status='pass' test-id='3'>
 		<div class='collapsible-header'>
 			<div class='node-name'>Verify if new Pet can be added.</div>
-			<span class='node-time'>Jun 3, 2020 10:55:06 PM</span>
-			&middot; <span class='node-duration'>0h 0m 0s+0ms</span>
-			<span class='test-status right skip'>skip</span>
+			<span class='node-time'>Jun 4, 2020 02:16:38 AM</span>
+			&middot; <span class='node-duration'>0h 0m 2s+15ms</span>
+			<span class='test-status right pass'>pass</span>
 		</div>
 		<div class='collapsible-body'>
 			<div class='node-steps'>
@@ -231,11 +214,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class='log' status='skip'>
-							<td class='status skip' title='skip' alt='skip'><i class='material-icons'>redo</i></td>
-							<td class='timestamp'>10:55:06 PM</td>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>2:16:40 AM</td>
 							<td class='step-details'>
-									Test Case : Verify if new Pet can be added. is skipped
+									Test Case : Verify if new Pet can be added. is passed
 								
 							</td>
 						</tr>
@@ -244,43 +227,12 @@
 			</div>
 		</div>
 	</li>
-	<li class='node level-1 leaf skip' status='skip' test-id='4'>
-		<div class='collapsible-header'>
-			<div class='node-name'>Verify if new Pet can be deleted.</div>
-			<span class='node-time'>Jun 3, 2020 10:55:06 PM</span>
-			&middot; <span class='node-duration'>0h 0m 0s+0ms</span>
-			<span class='test-status right skip'>skip</span>
-		</div>
-		<div class='collapsible-body'>
-			<div class='node-steps'>
-				<table class='bordered table-results'>
-					<thead>
-						<tr>
-							<th>Status</th>
-							<th>Timestamp</th>
-							<th>Details</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class='log' status='skip'>
-							<td class='status skip' title='skip' alt='skip'><i class='material-icons'>redo</i></td>
-							<td class='timestamp'>10:55:06 PM</td>
-							<td class='step-details'>
-									Test Case : Verify if new Pet can be deleted. is skipped
-								
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</li>
-	<li class='node level-1 leaf skip' status='skip' test-id='5'>
+	<li class='node level-1 leaf pass' status='pass' test-id='4'>
 		<div class='collapsible-header'>
 			<div class='node-name'>Verify if new Pet can be found by id.</div>
-			<span class='node-time'>Jun 3, 2020 10:55:06 PM</span>
-			&middot; <span class='node-duration'>0h 0m 0s+0ms</span>
-			<span class='test-status right skip'>skip</span>
+			<span class='node-time'>Jun 4, 2020 02:16:40 AM</span>
+			&middot; <span class='node-duration'>0h 0m 0s+506ms</span>
+			<span class='test-status right pass'>pass</span>
 		</div>
 		<div class='collapsible-body'>
 			<div class='node-steps'>
@@ -293,11 +245,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class='log' status='skip'>
-							<td class='status skip' title='skip' alt='skip'><i class='material-icons'>redo</i></td>
-							<td class='timestamp'>10:55:06 PM</td>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>2:16:41 AM</td>
 							<td class='step-details'>
-									Test Case : Verify if new Pet can be found by id. is skipped
+									Test Case : Verify if new Pet can be found by id. is passed
 								
 							</td>
 						</tr>
@@ -306,12 +258,12 @@
 			</div>
 		</div>
 	</li>
-	<li class='node level-1 leaf skip' status='skip' test-id='6'>
+	<li class='node level-1 leaf pass' status='pass' test-id='5'>
 		<div class='collapsible-header'>
-			<div class='node-name'>Verify if new Pet can be found by status.</div>
-			<span class='node-time'>Jun 3, 2020 10:55:06 PM</span>
-			&middot; <span class='node-duration'>0h 0m 0s+0ms</span>
-			<span class='test-status right skip'>skip</span>
+			<div class='node-name'>Verify if existing Pet can be modified.</div>
+			<span class='node-time'>Jun 4, 2020 02:16:41 AM</span>
+			&middot; <span class='node-duration'>0h 0m 0s+453ms</span>
+			<span class='test-status right pass'>pass</span>
 		</div>
 		<div class='collapsible-body'>
 			<div class='node-steps'>
@@ -324,11 +276,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class='log' status='skip'>
-							<td class='status skip' title='skip' alt='skip'><i class='material-icons'>redo</i></td>
-							<td class='timestamp'>10:55:06 PM</td>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>2:16:41 AM</td>
 							<td class='step-details'>
-									Test Case : Verify if new Pet can be found by status. is skipped
+									Test Case : Verify if existing Pet can be modified. is passed
 								
 							</td>
 						</tr>
@@ -337,12 +289,12 @@
 			</div>
 		</div>
 	</li>
-	<li class='node level-1 leaf skip' status='skip' test-id='7'>
+	<li class='node level-1 leaf pass' status='pass' test-id='6'>
 		<div class='collapsible-header'>
-			<div class='node-name'>Verify if new Pet can be updated.</div>
-			<span class='node-time'>Jun 3, 2020 10:55:06 PM</span>
-			&middot; <span class='node-duration'>0h 0m 0s+0ms</span>
-			<span class='test-status right skip'>skip</span>
+			<div class='node-name'>Verify if existing Pet can be deleted.</div>
+			<span class='node-time'>Jun 4, 2020 02:16:41 AM</span>
+			&middot; <span class='node-duration'>0h 0m 0s+461ms</span>
+			<span class='test-status right pass'>pass</span>
 		</div>
 		<div class='collapsible-body'>
 			<div class='node-steps'>
@@ -355,11 +307,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class='log' status='skip'>
-							<td class='status skip' title='skip' alt='skip'><i class='material-icons'>redo</i></td>
-							<td class='timestamp'>10:55:06 PM</td>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>2:16:41 AM</td>
 							<td class='step-details'>
-									Test Case : Verify if new Pet can be updated. is skipped
+									Test Case : Verify if existing Pet can be deleted. is passed
 								
 							</td>
 						</tr>
@@ -414,13 +366,13 @@
 					<div class='category-heading'>
 						<span class='category-name'>Petssmoketest</span>
 						<span class='category-status right'>
-						<span class='label fail'>1</span>
+						<span class='label pass'>1</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
+							<span class='label green accent-4 white-text'>Passed: 1</span>
 							
-							<span class='label red lighten-1 white-text'>Failed: 1</span>
 							
 						</div>
 						<div class='category-tests'>
@@ -434,9 +386,9 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Jun 3, 2020 10:54:10 PM</td>
+										<td>Jun 4, 2020 02:16:38 AM</td>
 										<td class='linked' test-id='1'>Pets smoke test</td>
-										<td><span class='test-status fail'>fail</span></td>
+										<td><span class='test-status pass'>pass</span></td>
 									</tr>
 								</tbody>
 							</table>
@@ -466,19 +418,19 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>6</div>
+					<div class='panel-lead'>5</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Jun 3, 2020 10:54:10 PM</div>
+					<div class='panel-lead'>Jun 4, 2020 02:16:38 AM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Jun 3, 2020 10:54:10 PM</div>
+			 		<div class='panel-lead'>Jun 4, 2020 02:16:38 AM</div>
 				</div>
 			</div>
 			<div class='col s2'>
@@ -537,11 +489,11 @@
 						</tr>
 						<tr>
 							<td>Petssmoketest</td>
-							<td>0</td>
 							<td>1</td>
 							<td>0</td>
+							<td>0</td>
 							<td>
-									0%
+									100%
 							</td>
 						</tr>
 					</table>
@@ -555,23 +507,23 @@
 		<!-- container -->
 		<script>
 			var statusGroup = {
-				passParent: 0,
-				failParent: 1,
+				passParent: 1,
+				failParent: 0,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				exceptionsParent: 1,
+				exceptionsParent: 0,
 				
-				passChild: 0,
-				failChild: 1,
+				passChild: 5,
+				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
-				skipChild: 5,
+				skipChild: 0,
 				infoChild: 0,
 				debugChild: 0,
-				exceptionsChild: 6,
+				exceptionsChild: 0,
 				
 				passGrandChild: 0,
 				failGrandChild: 0,
@@ -586,7 +538,7 @@
 		</script>
 		<script>
 			var timeline = {
-			        "Pets smoke test":56.364
+			        "Pets smoke test":3.487
 			};
 		</script>
 		<script src='https://cdn.rawgit.com/extent-framework/extent-github-cdn/master/v3html/js/extent.js' type='text/javascript'></script>
